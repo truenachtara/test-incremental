@@ -49,7 +49,7 @@ function buyA() {
         currentCost[0] = Math.ceiling(nlogn(currentCost[0]+1))
         buildingA = buildingA + 1
     } else {
-        document.write("Too Expensive!")
+        document.getElementById("CanPay").innerHTML = "Too Expensive!"
     }
 }
 
