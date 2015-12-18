@@ -1,14 +1,32 @@
 var x = 0, dx = 1, current_action='add';
 var actions = {
-'add' : function incrementMoney() { x += dx; },
-'subtract': function decrementMoney() { x -= dx; }
+'add': function( ) { x += dx; },
+'subtract': function( ) { x -= dx; }
 };
 
 onmessage = function( evt ) {
    if ( evt.data && evt.data.action && evt.data.action in actions)
    {
-     current_action = evt.data.action;
-     if ( null != evt.data.amount ) { dx = evt.data.amount; }
+     if ( true === evt.data.once )
+     {
+         // store current state
+         var prev_action = current_action, prev_dx = dx;
+         current_action = evt.data.action;
+         if ( null != evt.data.amount ) { dx = evt.data.amount; }
+         // do action once,
+         // optionaly, you can also stop the "doAction timer"
+         // and restart it after finishing this action, ie below
+         // but left it as is for now
+         actions[current_action]( );
+         // restore state
+         current_action = prev_action;
+         dx = prev_dx;
+     }
+     else
+     {
+         current_action = evt.data.action;
+         if ( null != evt.data.amount ) { dx = evt.data.amount; }
+     }
    }
 };
 
