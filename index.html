@@ -36,11 +36,12 @@ function nlogn(n) {
 function getA() {
     cost = currentCost[0];
     if (buyable == true) {
-        result = result - buyCost;
-        currentCost[0] = (currentCost[0] + 1) * Math.log10(currentCost[0] + 1);
-        buildingA = buildingA + 1;
+        money = money - currentCost[0]
+        currentCost[0] = nlogn(currentCost[0] + 1)
+        buildingA = buildingA + 1
     } else {
-        document.write("Too Expensive!");
+        document.print("Too Expensive!")
+    }
 }
 
 </script>
