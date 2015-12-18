@@ -1,9 +1,7 @@
 var i = 0;
 
 function incrementMoney() {
-  self.addEventListener('message', function(e) {
-    i = i - cost
-    }, false);
+  this.onevent
   i = i + 1;
   postMessage(i);
   setTimeout("incrementMoney()",1000);
