@@ -1,7 +1,7 @@
 var i = 0;
 
 function incrementMoney() {
-  this.onmessage 
+  this.onmessage = function(event)
   i = i + 1;
   postMessage(i);
   setTimeout("incrementMoney()",1000);
