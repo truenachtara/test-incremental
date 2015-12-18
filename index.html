@@ -6,6 +6,8 @@
 
 var buildingModifier = 0;
 
+var count;
+
 function beginGame() {
   if(typeof(count) == "undefined") {
     count = new Worker("counterWorker.js");
