@@ -1,7 +1,7 @@
 var money = 0;
 
 function incrementMoney() {
-    money + 1 + buildingModifier = money;
+    money = money + 1
     postMessage(money);
     setTimeout("incrementMoney()",1000)
 }
