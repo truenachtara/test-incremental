@@ -8,6 +8,10 @@ if(typeof(count) == "undefined") {
   count = new Worker("counterWorker.js")
 }
 
+counterWorker.onmessage = function(event) {
+  document.getElementById("result").innerHTML = event.data;
+};
+
 </script>
 
 </head>
