@@ -49,10 +49,10 @@ function buyA() {
     cost = currentCost[0];
     checkBuyable();
     if (buyable == true) {
+        document.getElementById("costA").innerHTML = currentCost[0]
         count.postMessage({action:'subtract', amount:currentCost[0], once:true});
         currentCost[0] = Math.ceiling(nlogn(currentCost[0]+1))
         buildingA = buildingA + 1
-        document.getElementById("costA").innerHTML = currentCost[0]
         document.getElementById("amountA").innerHTML = "You own " + buildingA + " Building A's."
         document.getElementById("canPay").innerHTML = "You just bought another!"
         setTimeout(resetCanPay, 1000)
