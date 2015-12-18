@@ -4,13 +4,15 @@
 
 <script language="JavaScript">
 
-if(typeof(count) == "undefined") {
-  count = new Worker("counterWorker.js")
-}
+function beginGame() {
+  if(typeof(count) == "undefined") {
+    count = new Worker("counterWorker.js");
+  };
 
-counterWorker.onmessage = function(event) {
-  document.getElementById("muns").innerHTML = event.data;
-};
+  counterWorker.onmessage = function(event) {
+    document.getElementById("muns").innerHTML = event.data;
+  };
+}
 
 </script>
 
