@@ -48,15 +48,15 @@ function buyA() {
         count.postMessage({action:'subtract', amount:currentCost[0], once:true});
         currentCost[0] = Math.ceiling(nlogn(currentCost[0]+1))
         buildingA = buildingA + 1
-        document.getElementById("CostA").innerHTML = currentCost[0]
-        document.getElementById("AmountA").innerHTML = "You own " + buildingA + " Building A's."
-        document.getElementById("CanPay").innerHTML = "You just bought another!"
+        document.getElementById("CostA") = currentCost[0]
+        document.getElementById("AmountA") = "You own " + buildingA + " Building A's."
+        document.getElementById("CanPay") = "You just bought another!"
         wait(1000)
-        document.getElementById("CanPay").innerHTML = " "
+        document.getElementById("CanPay") = " "
     } else {
-        document.getElementById("CanPay").innerHTML = "Too Expensive to buy another!"
+        document.getElementById("CanPay") = "Too Expensive to buy another!"
         wait(1000)
-        document.getElementById("CanPay").innerHTML = " "
+        document.getElementById("CanPay") = " "
     }
 }
 
