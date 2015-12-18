@@ -13,6 +13,8 @@ Your money: <output id="result"></output><br><br>
 
 var count;
 var buildingModifier = 0;
+var cost = 0;
+
 var buildingA = 0;
 
 function beginGame() {
@@ -28,9 +30,25 @@ function beginGame() {
     }
 }
 
-function checkForBuyable() {
+
+function checkBuyable() {
+    if(cost * Math.log10(cost) < money) {
+        buyCost = cost * Math.log10(cost)
+        return("true")
+    } else {
+        return("false")
 };
-  
+
+function buyA() {
+    cost = currentCost[0];
+    if (checkBuyable(); = true) {
+        money = money - buyCost;
+        currentCost[0] = (currentCost[0] + 1) * Math.log10(currentCost[0] + 1);
+        buildingA = buildingA + 1
+    } else {
+        document.write("Too Expensive!");
+    };
+    
 
 </script>
 
