@@ -1,5 +1,5 @@
 var x = 0, dx = 1, current_action='add';
-var actions{
+var actions = {
 'add' : function incrementMoney() {x += dx;},
 'subtract': function decrementMoney() {x -= dx;}
 };
