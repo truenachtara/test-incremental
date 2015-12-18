@@ -24,6 +24,8 @@ function beginGame() {
     }
 }
 
+document.getElementById("currentCostA").innerHTML = 10;
+
 </script>
 
 </head>
@@ -37,10 +39,10 @@ Your money: <output id="result"></output><br><br>
 
 function checkBuyable() {
     if(cost * Math.log10(cost) < money) {
-        buyCost = cost * Math.log10(cost)
-        return("true")
+        buyCost = cost * Math.log10(cost);
+        return("true");
     } else {
-        return("false")
+        return("false");
 };
 
 function buyA() {
@@ -48,10 +50,10 @@ function buyA() {
     if (checkBuyable(); = true) {
         money = money - buyCost;
         currentCost[0] = (currentCost[0] + 1) * Math.log10(currentCost[0] + 1);
-        buildingA = buildingA + 1
+        buildingA = buildingA + 1;
     } else {
         document.write("Too Expensive!");
-    document.getElementById("currentCostA").innerHTML = currentCost[0]
+    document.getElementById("currentCostA").innerHTML = currentCost[0];
 };
     
 beginGame();
