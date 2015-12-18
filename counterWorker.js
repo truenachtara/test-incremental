@@ -5,3 +5,5 @@ function incrementMoney() {
     postMessage(money);
     setTimeout("incrementMoney()",1000)
 }
+
+incrementMoney();
