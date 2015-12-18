@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <head>
-<title>Nachie's World</title>
+<title>Test incremental</title>
+
+<script language="JavaScript">
+
+if(typeof(count) == "undefined") {
+  count = new Worker("counterWorker.js")
+}
+
+</script>
+
 </head>
 
 <body>
 Hello, this is Nachie's World!<br><br>
 
 <script language="JavaScript">
-document.write("I am an Umbreon with blue rings and blue eyes. My name is Nachie!<br>")
-document.write("I am the best Umbreon there is! No doubt about it!")
+
+document.write("Hello.")
+
 </script>
 
 </body>
