@@ -33,7 +33,16 @@ function nlogn(n) {
     return n * Math.log10(n);
 }
 
-function getA() {
+function checkBuyable() {
+    if(cost * Math.log10(cost) < money) {
+        buyCost = cost * Math.log10(cost);
+        buyable = true; 
+    } else {
+        buyable = false;
+    }
+}
+
+function buyA() {
     cost = currentCost[0];
     if (buyable == true) {
         money = money - currentCost[0]
