@@ -24,19 +24,6 @@ function beginGame() {
     }
 }
 
-</script>
-
-</head>
-
-<body>
-Your money: <output id="result"></output><br><br>
-
-<button onclick="buyA">Buy Building A (Money)</button>
-
-<script language="JavaScript">
-    
-beginGame();
-
 function checkBuyable() {
     if(cost * Math.log10(cost) < money) {
         buyCost = cost * Math.log10(cost);
@@ -54,6 +41,19 @@ function buyA() {
     } else {
         document.write("Too Expensive!");
 };
+
+</script>
+
+</head>
+
+<body>
+Your money: <output id="result"></output><br><br>
+
+<button onclick="buyA">Buy Building A (Money)</button>
+
+<script language="JavaScript">
+    
+beginGame();
 
 </script>
 
