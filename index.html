@@ -2,15 +2,6 @@
 <head>
 <title>Test incremental</title>
 
-</head>
-
-<body>
-Your money: <output id="result"></output><br><br>
-
-<button onclick="beginGame();">Begin Game</button><br>
-
-<button onclick="buyA">Buy Building A (<output id="currentCostA"></output> Money)</button>
-
 <script language="JavaScript">
 
 var count;
@@ -33,6 +24,16 @@ function beginGame() {
     }
 }
 
+</script>
+
+</head>
+
+<body>
+Your money: <output id="result"></output><br><br>
+
+<button onclick="buyA">Buy Building A (<output id="currentCostA"></output> Money)</button>
+
+<script language="JavaScript">
 
 function checkBuyable() {
     if(cost * Math.log10(cost) < money) {
@@ -53,6 +54,7 @@ function buyA() {
     document.getElementById("currentCostA").innerHTML = currentCost[0]
 };
     
+beginGame();
 
 </script>
 
