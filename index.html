@@ -48,6 +48,7 @@ function buyA() {
         money = money - currentCost[0]
         currentCost[0] = nlogn(currentCost[0] + 1)
         buildingA = buildingA + 1
+        count.postMessage(cost)
     } else {
         document.write("Too Expensive!")
     }
