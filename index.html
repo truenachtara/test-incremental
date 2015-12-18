@@ -10,6 +10,7 @@ var count;
 var buildingModifier = 0;
 var cost = 0;
 var currentCost = [10,25,50,100]
+var money = 0
 
 var buildingA = 0;
 
@@ -20,11 +21,14 @@ function beginGame() {
         }
         count.onmessage = function(event) {
             document.getElementById("result").innerHTML = event.data;
+            money = event.data
         };
     } else {
         document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Workers...";
     }
 }
+
+
 
 </script>
 
