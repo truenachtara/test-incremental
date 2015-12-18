@@ -10,7 +10,8 @@ var count;
 var buildingModifier = 0;
 var cost = 0;
 var currentCost = [10,25,50,100]
-var money = 0
+var money = 0;
+var nlogn = nlogn();
 
 var buildingA = 0;
 
@@ -29,17 +30,10 @@ function beginGame() {
 }
 
 function nlogn(n) {
-    return n * Math.log10(n)
+    return n * Math.log10(n);
 }
 
 function buyA() {
-    cost = currentCost[0];
-    if (buyable == true) {
-        money = money - buyCost;
-        currentCost[0] = nlogn(currentCost[0] + 1);
-        buildingA = buildingA + 1;
-    } else {
-        document.write("Too Expensive!");
 };
 
 </script>
