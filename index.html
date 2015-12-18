@@ -9,7 +9,7 @@ if(typeof(count) == "undefined") {
 }
 
 counterWorker.onmessage = function(event) {
-  document.getElementById("result").innerHTML = event.data;
+  document.getElementById("muns").innerHTML = event.data;
 };
 
 </script>
@@ -17,7 +17,7 @@ counterWorker.onmessage = function(event) {
 </head>
 
 <body>
-Hello, this is Nachie's World!<br><br>
+Your money: <output id=muns></output><br><br>
 
 <script language="JavaScript">
 
