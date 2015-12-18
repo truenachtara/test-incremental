@@ -8,16 +8,6 @@ var buildingModifier = 0;
 
 var count;
 
-function beginGame() {
-  if(typeof(count) == "undefined") {
-    count = new Worker("counterWorker.js");
-  };
-
-  counterWorker.onmessage = function(event) {
-    document.getElementById("result").innerHTML = event.data;
-  };
-}
-
 </script>
 
 </head>
@@ -30,6 +20,16 @@ Your money: <output id="result"></output><br><br>
 <script language="JavaScript">
 
 document.write("Hello.")
+
+function beginGame() {
+  if(typeof(count) == "undefined") {
+    count = new Worker("counterWorker.js");
+  };
+
+  counterWorker.onmessage = function(event) {
+    document.getElementById("result").innerHTML = event.data;
+  };
+}
 
 </script>
 
