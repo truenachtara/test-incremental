@@ -27,9 +27,9 @@ function beginGame() {
 function checkBuyable() {
     if(cost * Math.log10(cost) < money) {
         buyCost = cost * Math.log10(cost);
-        return("true");
+        return true;
     } else {
-        return("false");
+        return false;
 };
 
 function buyA() {
