@@ -55,16 +55,16 @@ function buyA() {
         document.getElementById("costA").innerHTML = currentCost[0]
         document.getElementById("amountA").innerHTML = "You own " + buildingA + " Building A's."
         document.getElementById("canPay").innerHTML = "You just bought another!"
-        setTimeout(null, 1000)
-        document.getElementById("canPay").innerHTML = " "
+        setTimeout(resetCanPay(), 1000)
     } else {
         document.getElementById("canPay").innerHTML = "Too Expensive to buy another!"
-        setTimeout(null, 1000)
-        document.getElementById("canPay").innerHTML = " "
+        setTimeout(resetCanPay(), 1000)
     }
 }
 
-
+function resetCanPay() {
+    document.getElementById("canPay").innerHTML = " "
+}
 
 </script>
 
