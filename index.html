@@ -24,7 +24,7 @@ function beginGame() {
     }
 }
 
-function checkBuyable() {
+function checkBuyable(cost,money) {
     if(cost * Math.log10(cost) < money) {
         buyCost = cost * Math.log10(cost);
         return true;
@@ -34,7 +34,7 @@ function checkBuyable() {
 
 function buyA() {
     cost = currentCost[0];
-    if (checkBuyable(); = true) {
+    if (checkBuyable(cost,money); = true) {
         money = money - buyCost;
         currentCost[0] = (currentCost[0] + 1) * Math.log10(currentCost[0] + 1);
         buildingA = buildingA + 1;
