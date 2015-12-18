@@ -43,6 +43,7 @@ function checkBuyable() {
 
 function buyA() {
     cost = currentCost[0];
+    checkBuyable();
     if (buyable == true) {
         count.postMessage({action:'subtract', amount:currentCost[0], once:true});
         currentCost[0] = Math.ceiling(nlogn(currentCost[0]+1))
