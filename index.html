@@ -4,7 +4,7 @@
 
 <script language="JavaScript">
 
-var buyCost;
+var buyCost = 0;
 var buyable = true;
 var count;
 var buildingModifier = 0;
@@ -35,7 +35,6 @@ function nlogn(n) {
 
 function checkBuyable() {
     if(cost < money) {
-        buyCost = nlogn(cost)
         buyable = true; 
     } else {
         buyable = false;
@@ -45,10 +44,9 @@ function checkBuyable() {
 function buyA() {
     cost = currentCost[0];
     if (buyable == true) {
-        money = money - currentCost[0]
-        currentCost[0] = buyCost
+        count.postMessage({action:'subtract', amount:currentCost[0]});
+        currentCost[0] = Math.ceiling(nlogn(currentCost[0]+1))
         buildingA = buildingA + 1
-        count.postMessage({action:'subtract', amount:cost});
     } else {
         alert("Too Expensive!")
     }
@@ -61,7 +59,7 @@ function buyA() {
 <body>
 Your money: <output id="result"></output><br><br>
 
-<button onclick="buyA();">Buy Building A (Costs Money)</button>
+<button onclick="buyA();">Buy Building A (Costs some Money)</button>
 
 <script language="JavaScript">
     
