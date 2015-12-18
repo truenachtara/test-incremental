@@ -22,14 +22,18 @@ Your money: <output id="result"></output><br><br>
 document.write("Hello.")
 
 function beginGame() {
-  if(typeof(count) == "undefined") {
-    count = new Worker("counterWorker.js");
-  };
-
-  counterWorker.onmessage = function(event) {
-    document.getElementById("result").innerHTML = event.data;
-  };
+    if(typeof(Worker) !== "undefined") {
+        if(typeof(count) == "undefined") {
+            count = new Worker("counterWorker.js");
+        }
+        count.onmessage = function(event) {
+            document.getElementById("result").innerHTML = event.data;
+        };
+    } else {
+        document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Workers...";
+    }
 }
+
 
 </script>
 
