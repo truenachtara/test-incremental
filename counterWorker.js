@@ -8,7 +8,9 @@ onmessage = function( evt ) {
    if ( evt.data && evt.data.action && evt.data.action in actions)
    {
      current_action = evt.data.action;
-     if ( evt.data.amount ) dx = evt.data.amount;
+     if ( evt.data.amount ) {
+        dx = evt.data.amount;
+     }
    }
 };
 
