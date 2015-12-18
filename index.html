@@ -12,7 +12,7 @@ function beginGame() {
   };
 
   counterWorker.onmessage = function(event) {
-    document.getElementById("muns").innerHTML = event.data;
+    document.getElementById("result").innerHTML = event.data;
   };
 }
 
@@ -21,7 +21,7 @@ function beginGame() {
 </head>
 
 <body>
-Your money: <output id=muns></output><br><br>
+Your money: <output id=result></output><br><br>
 
 <button onclick="beginGame();">Begin Game</button><br>
 
