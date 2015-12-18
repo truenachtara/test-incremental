@@ -1,9 +1,9 @@
-var money = 0;
+var i = 0;
 
 function incrementMoney() {
-    money = money + 1;
-    postMessage(money);
-    setTimeout("incrementMoney()",1000);
+  i = i + 1;
+  postMessage(i);
+  setTimeout("incrementMoney()",1000);
 }
 
 incrementMoney();
