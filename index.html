@@ -4,6 +4,8 @@
 
 <script language="JavaScript">
 
+var buildingModifier = 0;
+
 function beginGame() {
   if(typeof(count) == "undefined") {
     count = new Worker("counterWorker.js");
@@ -21,7 +23,7 @@ function beginGame() {
 <body>
 Your money: <output id=muns></output><br><br>
 
-<button onclick="beginGame();">Begin Game</button>
+<button onclick="beginGame();">Begin Game</button><br>
 
 <script language="JavaScript">
 
