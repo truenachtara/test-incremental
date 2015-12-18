@@ -48,12 +48,14 @@ function buyA() {
         count.postMessage({action:'subtract', amount:currentCost[0], once:true});
         currentCost[0] = Math.ceiling(nlogn(currentCost[0]+1))
         buildingA = buildingA + 1
+        document.getElementById("CostA").innerHTML = currentCost[0]
+        document,getElementById("CanPay").innerHTML = "You own " + buildingA + " Building As. You just bought another!"
     } else {
-        document.getElementById("CanPay").innerHTML = "Too Expensive!"
+        document.getElementById("CanPay").innerHTML = "You own " + buildingA + " Building As. Too Expensive to buy another!"
     }
 }
 
-document.getElementById("CostA").innerHTML = currentCost[0]
+
 
 </script>
 
@@ -63,6 +65,7 @@ document.getElementById("CostA").innerHTML = currentCost[0]
 Your money: <output id="result"></output><br><br>
 
 <button onclick="buyA();">Buy Building A</button><br>
+Cost of next one: <output id="CostA"></output>
 <output id="CanPay"></output>
 
 <script language="JavaScript">
