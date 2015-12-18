@@ -4,6 +4,7 @@
 
 <script language="JavaScript">
 
+boolean buyable;
 var count;
 var buildingModifier = 0;
 var cost = 0;
@@ -27,14 +28,14 @@ function beginGame() {
 function checkBuyable() {
     if(cost * Math.log10(cost) < money) {
         buyCost = cost * Math.log10(cost);
-        return 1;
+        buyable = true
     } else {
-        return 0;
+        buyable = false
 };
 
 function buyA() {
     cost = currentCost[0];
-    if (checkBuyable() == 1) {
+    if (buyable == true) {
         money = money - buyCost;
         currentCost[0] = (currentCost[0] + 1) * Math.log10(currentCost[0] + 1);
         buildingA = buildingA + 1;
