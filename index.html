@@ -9,6 +9,8 @@ Your money: <output id="result"></output><br><br>
 
 <button onclick="beginGame();">Begin Game</button><br>
 
+<button onclick="buyA">Buy Building A (<output id="currentCostA"></output> Money)</button>
+
 <script language="JavaScript">
 
 var count;
@@ -48,7 +50,8 @@ function buyA() {
         buildingA = buildingA + 1
     } else {
         document.write("Too Expensive!");
-    };
+    document.getElementById("currentCostA").innerHTML = currentCost[0]
+};
     
 
 </script>
