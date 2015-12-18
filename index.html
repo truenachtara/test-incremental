@@ -13,6 +13,10 @@ var currentCost = [10, 25, 50, 100]
 var money = 0;
 var nlogn = nlogn();
 
+var costA = document.createElement("costA")
+var canPay = document.createElement("canPay")
+var amountA = document.createElement("amountA")
+
 var buildingA = 0;
 
 function beginGame() {
@@ -48,15 +52,15 @@ function buyA() {
         count.postMessage({action:'subtract', amount:currentCost[0], once:true});
         currentCost[0] = Math.ceiling(nlogn(currentCost[0]+1))
         buildingA = buildingA + 1
-        document.getElementById("CostA") = currentCost[0]
-        document.getElementById("AmountA") = "You own " + buildingA + " Building A's."
-        document.getElementById("CanPay") = "You just bought another!"
+        document.getElementById("costA") = currentCost[0]
+        document.getElementById("amountA") = "You own " + buildingA + " Building A's."
+        document.getElementById("canPay") = "You just bought another!"
         wait(1000)
-        document.getElementById("CanPay") = " "
+        document.getElementById("canPay") = " "
     } else {
-        document.getElementById("CanPay") = "Too Expensive to buy another!"
+        document.getElementById("canPay") = "Too Expensive to buy another!"
         wait(1000)
-        document.getElementById("CanPay") = " "
+        document.getElementById("canPay") = " "
     }
 }
 
@@ -70,8 +74,8 @@ function buyA() {
 Your money: <output id="result"></output><br><br>
 
 <button onclick="buyA();">Buy Building A</button><br>
-Cost of next one: <output id="CostA"></output><br>
-<output id="AmountA"></output><output id="CanPay"></output>
+Cost of next one: <output id="costA"></output><br>
+<output id="amountA"></output><output id="canPay"></output>
 
 <script language="JavaScript">
 
