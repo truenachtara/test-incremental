@@ -26,17 +26,15 @@ function beginGame() {
     }
 }
 
-
-
-function buyA() {
-    cost = currentCost[0];
-    if (buyable == true) {
-        result = result - buyCost;
-        currentCost[0] = (currentCost[0] + 1) * Math.log10(currentCost[0] + 1);
-        buildingA = buildingA + 1;
+function checkBuyable() {
+    if(cost * Math.log10(cost) < money) {
+        buyCost = cost * Math.log10(cost);
+        buyable = true
     } else {
-        document.write("Too Expensive!");
+        buyable = false
 };
+
+
 
 </script>
 
