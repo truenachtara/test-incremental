@@ -24,17 +24,17 @@ function beginGame() {
     }
 }
 
-function checkBuyable(cost,money) {
+function checkBuyable() {
     if(cost * Math.log10(cost) < money) {
         buyCost = cost * Math.log10(cost);
-        return true;
+        return 1;
     } else {
-        return false;
+        return 0;
 };
 
 function buyA() {
     cost = currentCost[0];
-    if (checkBuyable(cost,money); = true) {
+    if (checkBuyable() = 1) {
         money = money - buyCost;
         currentCost[0] = (currentCost[0] + 1) * Math.log10(currentCost[0] + 1);
         buildingA = buildingA + 1;
