@@ -34,8 +34,8 @@ function nlogn(n) {
 }
 
 function checkBuyable() {
-    if(cost * Math.log10(cost) < money) {
-        buyCost = cost * Math.log10(cost);
+    if(cost < money) {
+        buyCost = nlogn(cost)
         buyable = true; 
     } else {
         buyable = false;
@@ -46,11 +46,11 @@ function buyA() {
     cost = currentCost[0];
     if (buyable == true) {
         money = money - currentCost[0]
-        currentCost[0] = nlogn(currentCost[0] + 1)
+        currentCost[0] = buyCost
         buildingA = buildingA + 1
         count.postMessage({action:'subtract', amount:cost});
     } else {
-        document.write("Too Expensive!")
+        alert("Too Expensive!")
     }
 }
 
