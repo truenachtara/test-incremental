@@ -20,6 +20,7 @@ var count;
 var buildingModifier = 0;
 var cost = 0;
 var currentCost = [10, 25, 50, 100]
+var building = [0, 0, 0, 0]
 var money = 0;
 //var nlogn = nlogn();
 
@@ -59,12 +60,12 @@ function buyA() {
     cost = currentCost[0];
     checkBuyable();
     if (buyable == true) {
-        document.getElementById("costA").innerHTML = currentCost[0]
-        document.getElementById("amountA").innerHTML = buildingA
-        document.getElementById("canPay").innerHTML = "You just bought another!"
         count.postMessage({action:'subtract', amount:currentCost[0], once:true});
         currentCost[0] = Math.ceil(nlogn(currentCost[0]+1))
-        buildingA = buildingA + 1
+        building[0] = building[0] + 1
+        document.getElementById("costA").innerHTML = currentCost[0]
+        document.getElementById("amountA").innerHTML = building[0]
+        document.getElementById("canPay").innerHTML = "You just bought another!"
         setTimeout(resetCanPay, 1000)
     } else {
         document.getElementById("canPay").innerHTML = "Too Expensive to buy another!"
@@ -78,6 +79,7 @@ function resetCanPay() {
 }
 
 document.getElementById("costA").innerHTML = currentCost[0]
+document.getElementById("amountA").innerHTML = building[0]
 
 beginGame();
 
