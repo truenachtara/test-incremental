@@ -57,7 +57,7 @@ function beginGame() {
         }
         count.onmessage = function(event) {
             document.getElementById("result").innerHTML = event.data.money;
-            if(event.data.level = null) {
+            if(event.data.level == null) {
             } else {
                 building[event.data.level] = building[event.data.level] + 1
                 currentCost[event.data.level] = Math.ceil(nlogn(currentCost[event.data.level]));
