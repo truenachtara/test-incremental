@@ -117,6 +117,7 @@ function resetBonuses() {
     document.getElementById("bonusB").innerHTML = currentBonuses[1]
     document.getElementById("bonusC").innerHTML = currentBonuses[2]
     document.getElementById("bonusD").innerHTML = currentBonuses[3]
+    count.postMessage({action:'add', amount:totalBonus, once:false})
 }
 
 document.getElementById("costA").innerHTML = currentCost[0]
