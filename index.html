@@ -45,6 +45,7 @@ var building = [0, 0, 0, 0]
 var money = 0;
 var baseBonuses = [1, 2, 5, 10]
 var currentBonuses = [0, 0, 0, 0]
+var totalBonus = 0
 
 var buildingA = 0;
 
@@ -63,7 +64,7 @@ function beginGame() {
 }
 
 function nlogn(n) {
-    return n * Math.log10(n);
+    return n * Math.log10(n) * .9;
 }
 
 function checkBuyable() {
@@ -83,7 +84,7 @@ function buy(buildingID) {
     checkBuyable();
     if (buyable == true) {
         count.postMessage({action:'subtract', amount:currentCost[buildingID], once:true});
-        currentCost[buildingID] = Math.ceil(nlogn(currentCost[buildingID]+1))
+        currentCost[buildingID] = Math.ceil(nlogn(currentCost[buildingID]))
         building[buildingID] = building[buildingID] + 1
         document.getElementById("canPay").innerHTML = "You just bought another!"
         setTimeout(resetCanPay, 1000)
@@ -99,10 +100,19 @@ function buy(buildingID) {
     document.getElementById("amountB").innerHTML = building[1]
     document.getElementById("amountC").innerHTML = building[2]
     document.getElementById("amountD").innerHTML = building[3]
+    refreshBonuses();
 }
 
 function resetCanPay() {
     document.getElementById("canPay").innerHTML = " "
+}
+
+function resetBonuses() {
+    totalBonus = 0
+    for (i=0; i<= building.length; i++) {
+        currentBonuses[i] = baseBonuses[i] * building[i]
+        totalBonus = totalBonus + currentBonuses[i]
+    }
 }
 
 document.getElementById("costA").innerHTML = currentCost[0]
