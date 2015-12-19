@@ -92,6 +92,7 @@ function buy(buildingID) {
         document.getElementById("canPay").innerHTML = "Too Expensive to buy another!"
         setTimeout(resetCanPay, 1000)
     }
+    refreshBonuses();
     document.getElementById("costA").innerHTML = currentCost[0]
     document.getElementById("costB").innerHTML = currentCost[1]
     document.getElementById("costC").innerHTML = currentCost[2]
@@ -100,24 +101,27 @@ function buy(buildingID) {
     document.getElementById("amountB").innerHTML = building[1]
     document.getElementById("amountC").innerHTML = building[2]
     document.getElementById("amountD").innerHTML = building[3]
-    refreshBonuses();
+    document.getElementById("bonusA").innerHTML = currentBonuses[0]
+    document.getElementById("bonusB").innerHTML = currentBonuses[1]
+    document.getElementById("bonusC").innerHTML = currentBonuses[2]
+    document.getElementById("bonusD").innerHTML = currentBonuses[3]
 }
 
 function resetCanPay() {
     document.getElementById("canPay").innerHTML = " "
 }
 
-function resetBonuses() {
+function refreshBonuses() {
     totalBonus = 0
     for (i=0; i<= building.length; i++) {
         currentBonuses[i] = baseBonuses[i] * building[i]
         totalBonus = totalBonus + currentBonuses[i]
     }
+    count.postMessage({action:'add', amount:totalBonus, once:false})
     document.getElementById("bonusA").innerHTML = currentBonuses[0]
     document.getElementById("bonusB").innerHTML = currentBonuses[1]
     document.getElementById("bonusC").innerHTML = currentBonuses[2]
     document.getElementById("bonusD").innerHTML = currentBonuses[3]
-    count.postMessage({action:'add', amount:totalBonus, once:false})
 }
 
 document.getElementById("costA").innerHTML = currentCost[0]
