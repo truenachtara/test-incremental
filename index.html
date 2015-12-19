@@ -7,10 +7,31 @@
 <body>
 Your money: <output id="result"></output><br><br>
 
-<button onclick="buyA();">Buy Building A</button><br>
+<button onclick="buy(0);">Buy Building A</button><br>
 Cost of next one: <output id="costA"></output><br>
-<output id="canPay"></output><br>
-You own <output id="amountA"></output> Building A's!
+You own <output id="amountA"></output> Building A's!<br>
+They make <output id="bonusA"></output> money per tick.<br>
+<output id="canPay"></output><br><br>
+
+<button onclick="buy(1);">Buy Building B</button><br>
+Cost of next one: <output id="costB"></output><br>
+You own <output id="amountB"></output> Building B's!<br>
+They make <output id="bonusB"></output> money per tick.<br>
+<output id="canPay"></output><br><br>
+
+<button onclick="buy(2);">Buy Building C</button><br>
+Cost of next one: <output id="costC"></output><br>
+You own <output id="amountC"></output> Building C's!<br>
+They make <output id="bonusC"></output> money per tick.<br>
+<output id="canPay"></output><br><br>
+
+<button onclick="buy(3);">Buy Building D</button><br>
+Cost of next one: <output id="costD"></output><br>
+You own <output id="amountD"></output> Building D's!<br>
+They make <output id="bonusD"></output> money per tick.<br>
+<output id="canPay"></output><br><br>
+
+
 
 <script language="JavaScript">
 
@@ -22,7 +43,8 @@ var cost = 0;
 var currentCost = [10, 25, 50, 100]
 var building = [0, 0, 0, 0]
 var money = 0;
-//var nlogn = nlogn();
+var baseBonuses = [1, 2, 5, 10]
+var currentBonuses = [0, 0, 0, 0]
 
 var buildingA = 0;
 
@@ -45,7 +67,7 @@ function nlogn(n) {
 }
 
 function checkBuyable() {
-    if(cost < money) {
+    if(cost <= money) {
         buyable = true;
     } else {
         buyable = false;
@@ -56,15 +78,13 @@ var costA = document.createElement("costA")
 var canPay = document.createElement("canPay")
 var amountA = document.createElement("amountA")
 
-function buyA() {
-    cost = currentCost[0];
+function buy(buildingID) {
+    cost = currentCost[buildingID];
     checkBuyable();
     if (buyable == true) {
-        count.postMessage({action:'subtract', amount:currentCost[0], once:true});
-        currentCost[0] = Math.ceil(nlogn(currentCost[0]+1))
-        building[0] = building[0] + 1
-        document.getElementById("costA").innerHTML = currentCost[0]
-        document.getElementById("amountA").innerHTML = building[0]
+        count.postMessage({action:'subtract', amount:currentCost[buildingID], once:true});
+        currentCost[buildingID] = Math.ceil(nlogn(currentCost[buildingID]+1))
+        building[buildingID] = building[buildingID] + 1
         document.getElementById("canPay").innerHTML = "You just bought another!"
         setTimeout(resetCanPay, 1000)
     } else {
@@ -72,6 +92,13 @@ function buyA() {
         setTimeout(resetCanPay, 1000)
     }
     document.getElementById("costA").innerHTML = currentCost[0]
+    document.getElementById("costB").innerHTML = currentCost[1]
+    document.getElementById("costC").innerHTML = currentCost[2]
+    document.getElementById("costD").innerHTML = currentCost[3]
+    document.getElementById("amountA").innerHTML = building[0]
+    document.getElementById("amountB").innerHTML = building[1]
+    document.getElementById("amountC").innerHTML = building[2]
+    document.getElementById("amountD").innerHTML = building[3]
 }
 
 function resetCanPay() {
