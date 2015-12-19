@@ -67,6 +67,9 @@ function resetCanPay() {
     document.getElementById("canPay").innerHTML = " "
 }
 
+currentCost[0] = Math.ceiling(nlogn(currentCost[0]+1))
+document.getElementById("costA").innerHTML = currentCost[0]
+
 </script>
 
 </head>
