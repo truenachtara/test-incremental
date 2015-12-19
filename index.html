@@ -63,7 +63,7 @@ function beginGame() {
                 currentCost[event.data.level] = Math.ceil(nlogn(currentCost[event.data.level]));
                 document.getElementById("canPay").innerHTML = "You just bought another!";
             }
-            money = event.data
+            money = event.data.money
         };
     } else {
         document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Workers...";
