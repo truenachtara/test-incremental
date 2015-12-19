@@ -50,10 +50,10 @@ function buyA() {
     checkBuyable();
     if (buyable == true) {
         document.getElementById("costA").innerHTML = currentCost[0]
-        document.getElementById("amountA").innerHTML = "You own " + buildingA + " Building A's."
+        document.getElementById("amountA").innerHTML = buildingA
         document.getElementById("canPay").innerHTML = "You just bought another!"
         count.postMessage({action:'subtract', amount:currentCost[0], once:true});
-        currentCost[0] = Math.ceiling(nlogn(currentCost[0]+1))
+        currentCost[0] = Math.ceiling(nlogn(currentCost[0]+1)) + 5
         buildingA = buildingA + 1
         setTimeout(resetCanPay, 1000)
     } else {
@@ -75,8 +75,9 @@ function resetCanPay() {
 Your money: <output id="result"></output><br><br>
 
 <button onclick="buyA();">Buy Building A</button><br>
-Cost of next one: <p id="costA"></p><br>
-<p id="amountA"></p><p id="canPay"></p>
+Cost of next one: <output id="costA"></output><br>
+<output id="canPay"></output><br>
+You own <output id="amountA"></output> Building A's!
 
 <script language="JavaScript">
 
