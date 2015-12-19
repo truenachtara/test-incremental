@@ -6,6 +6,7 @@
 
 <body>
 Your money: <output id="result"></output><br><br>
+<output id="totalBonus"></output><br><br>
 
 <button onclick="buy(0);">Buy Building A</button><br>
 Cost of next one: <output id="costA"></output><br>
@@ -83,12 +84,13 @@ function buy(buildingID) {
         currentCost[buildingID] = Math.ceil(nlogn(currentCost[buildingID]));
         building[buildingID] = building[buildingID] + 1;
         document.getElementById("canPay").innerHTML = "You just bought another!";
+        refreshBonuses();
         setTimeout(resetCanPay, 1000);
     } else {
         document.getElementById("canPay").innerHTML = "Too Expensive to buy another!";
+        refreshBonuses();
         setTimeout(resetCanPay, 1000);
     }
-    refreshBonuses();
     document.getElementById("costA").innerHTML = currentCost[0];
     document.getElementById("costB").innerHTML = currentCost[1];
     document.getElementById("costC").innerHTML = currentCost[2];
@@ -113,11 +115,8 @@ function refreshBonuses() {
         currentBonuses[i] = baseBonuses[i] * building[i];
         totalBonus = totalBonus + currentBonuses[i];
     }
+    document.getElementById("totalBonus").innerHTML = totalBonus
     count.postMessage({action:'add', amount:totalBonus, once:false});
-    document.getElementById("bonusA").innerHTML = currentBonuses[0];
-    document.getElementById("bonusB").innerHTML = currentBonuses[1];
-    document.getElementById("bonusC").innerHTML = currentBonuses[2];
-    document.getElementById("bonusD").innerHTML = currentBonuses[3];
 }
 
 document.getElementById("costA").innerHTML = currentCost[0];
