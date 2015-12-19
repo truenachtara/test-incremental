@@ -2,6 +2,16 @@
 <head>
 <title>Test incremental</title>
 
+</head>
+
+<body>
+Your money: <output id="result"></output><br><br>
+
+<button onclick="buyA();">Buy Building A</button><br>
+Cost of next one: <output id="costA"></output><br>
+<output id="canPay"></output><br>
+You own <output id="amountA"></output> Building A's!
+
 <script language="JavaScript">
 
 var buyCost = 0;
@@ -11,7 +21,7 @@ var buildingModifier = 0;
 var cost = 0;
 var currentCost = [15, 25, 50, 100]
 var money = 0;
-var nlogBase10n = nlogn();
+//var nlogn = nlogn();
 
 var buildingA = 0;
 
@@ -35,7 +45,7 @@ function nlogn(n) {
 
 function checkBuyable() {
     if(cost < money) {
-        buyable = true; 
+        buyable = true;
     } else {
         buyable = false;
     }
@@ -67,22 +77,8 @@ function resetCanPay() {
     document.getElementById("canPay").innerHTML = " "
 }
 
-currentCost[0] = Math.ceiling(nlogn(currentCost[0]+1))
+currentCost[0] = Math.ceil(nlogn(currentCost[0]+1))
 document.getElementById("costA").innerHTML = currentCost[0]
-
-</script>
-
-</head>
-
-<body>
-Your money: <output id="result"></output><br><br>
-
-<button onclick="buyA();">Buy Building A</button><br>
-Cost of next one: <output id="costA"></output><br>
-<output id="canPay"></output><br>
-You own <output id="amountA"></output> Building A's!
-
-<script language="JavaScript">
 
 beginGame();
 
