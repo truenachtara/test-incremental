@@ -55,15 +55,15 @@ function beginGame() {
         if(typeof(count) == "undefined") {
             count = new Worker("counterWorker.js");
         }
-        count.onmessage = function(event) {
-            document.getElementById("result").innerHTML = event.data.money;
-            if(event.data.level == null) {
+        count.onmessage = function(evt) {
+            document.getElementById("result").innerHTML = evt.data.money;
+            if(evt.data.level == null) {
             } else {
-                building[event.data.level] = building[event.data.level] + 1
-                currentCost[event.data.level] = Math.ceil(nlogn(currentCost[event.data.level]));
+                building[evt.data.level] = building[evt.data.level] + 1
+                currentCost[evt.data.level] = Math.ceil(nlogn(currentCost[evt.data.level]));
                 document.getElementById("canPay").innerHTML = "You just bought another!";
             }
-            money = event.data.money
+            money = evt.data.money
         };
     } else {
         document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Workers...";
