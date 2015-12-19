@@ -40,7 +40,7 @@ var buyable = true;
 var count;
 var buildingModifier = 0;
 var cost = 0;
-var currentCost = [10, 25, 50, 100]
+var currentCost = [15, 25, 50, 100]
 var building = [0, 0, 0, 0]
 var money = 0;
 var baseBonuses = [1, 2, 5, 10]
@@ -113,6 +113,10 @@ function resetBonuses() {
         currentBonuses[i] = baseBonuses[i] * building[i]
         totalBonus = totalBonus + currentBonuses[i]
     }
+    document.getElementById("bonusA").innerHTML = currentBonuses[0]
+    document.getElementById("bonusB").innerHTML = currentBonuses[1]
+    document.getElementById("bonusC").innerHTML = currentBonuses[2]
+    document.getElementById("bonusD").innerHTML = currentBonuses[3]
 }
 
 document.getElementById("costA").innerHTML = currentCost[0]
