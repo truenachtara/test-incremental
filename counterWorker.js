@@ -3,10 +3,12 @@ var actions = {
 'add': function( ) { x += dx; },
 'subtract': function( ) { x -= dx; }
 };
+var level = null
 
 onmessage = function( evt ) {
    if ( evt.data && evt.data.action && evt.data.action in actions)
    {
+     level = evt.data.level
      if ( true === evt.data.once )
      {
          // store current state
@@ -14,7 +16,7 @@ onmessage = function( evt ) {
          current_action = evt.data.action;
          if ( null != evt.data.amount ) { dx = evt.data.amount; }
          // do action once,
-         // optionaly, you can also stop the "doAction timer"
+         // optionally, you can also stop the "doAction timer"
          // and restart it after finishing this action, ie below
          // but left it as is for now
          actions[current_action]( );
@@ -33,7 +35,8 @@ onmessage = function( evt ) {
 function doAction( )
 {
    actions[current_action]( );
-   postMessage( x );   
+   postMessage('money': x, 'level': level);   
+   level = null
    setTimeout(doAction,1000);
 }
 
