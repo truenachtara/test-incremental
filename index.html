@@ -53,7 +53,7 @@ function buyA() {
         document.getElementById("amountA").innerHTML = buildingA
         document.getElementById("canPay").innerHTML = "You just bought another!"
         count.postMessage({action:'subtract', amount:currentCost[0], once:true});
-        currentCost[0] = Math.ceiling(nlogn(currentCost[0]+1)) + 5
+        currentCost[0] = Math.ceil(nlogn(currentCost[0]+1)) + 5
         buildingA = buildingA + 1
         setTimeout(resetCanPay, 1000)
     } else {
