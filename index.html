@@ -56,7 +56,13 @@ function beginGame() {
             count = new Worker("counterWorker.js");
         }
         count.onmessage = function(event) {
-            document.getElementById("result").innerHTML = event.data;
+            document.getElementById("result").innerHTML = event.data.money;
+            if(event.data.level = null) {
+            } else {
+                building[event.data.level] = building[event.data.level] + 1
+                currentCost[event.data.level] = Math.ceil(nlogn(currentCost[event.data.level]));
+                document.getElementById("canPay").innerHTML = "You just bought another!";
+            }
             money = event.data
         };
     } else {
@@ -81,18 +87,12 @@ function buy(buildingID) {
     checkBuyable();
     if (buyable == true) {
         count.postMessage({action:'subtract', amount:currentCost[buildingID], once:true});
-        currentCost[buildingID] = Math.ceil(nlogn(currentCost[buildingID]));
-        building[buildingID] = building[buildingID] + 1;
-        document.getElementById("canPay").innerHTML = "You just bought another!";
-        refreshBonuses();
-        setTimeout(resetCanPay, 1000);
     } else if (buildingID == null) {
         refreshBonuses();
     } else {
         document.getElementById("canPay").innerHTML = "Too Expensive to buy another!";
-        refreshBonuses();
-        setTimeout(resetCanPay, 1000);
     }
+    refreshBonuses();
     document.getElementById("costA").innerHTML = currentCost[0];
     document.getElementById("costB").innerHTML = currentCost[1];
     document.getElementById("costC").innerHTML = currentCost[2];
@@ -105,6 +105,7 @@ function buy(buildingID) {
     document.getElementById("bonusB").innerHTML = currentBonuses[1];
     document.getElementById("bonusC").innerHTML = currentBonuses[2];
     document.getElementById("bonusD").innerHTML = currentBonuses[3];
+    setTimeout(resetCanPay, 1000);
 }
 
 function resetCanPay() {
@@ -118,7 +119,7 @@ function refreshBonuses() {
         totalBonus = totalBonus + currentBonuses[i];
     }
     document.getElementById("totalBonus").innerHTML = totalBonus
-    count.postMessage({action:'add', amount:totalBonus + 1, once:false});
+    count.postMessage({action:'add', amount:totalBonus + 1, once:false, level:null});
 }
 
 document.getElementById("costA").innerHTML = currentCost[0];
