@@ -111,7 +111,7 @@ function resetCanPay() {
 
 function refreshBonuses() {
     totalBonus = 0;
-    for (i=0; i<= building.length; i++) {
+    for (i = 0; i < building.length; i++) {
         currentBonuses[i] = baseBonuses[i] * building[i];
         totalBonus = totalBonus + currentBonuses[i];
     }
