@@ -3,12 +3,12 @@ var actions = {
 'add': function( ) { x += dx; },
 'subtract': function( ) { x -= dx; }
 };
-var level = null
+var lev = null
 
 onmessage = function( evt ) {
    if ( evt.data && evt.data.action && evt.data.action in actions)
    {
-     level = evt.data.level
+     lev = evt.data.level
      if ( true === evt.data.once )
      {
          // store current state
@@ -35,8 +35,8 @@ onmessage = function( evt ) {
 function doAction( )
 {
    actions[current_action]( );
-   postMessage('money': x, 'level': level);   
-   level = null
+   postMessage('money': x, 'level': lev);   
+   lev = null
    setTimeout(doAction,1000);
 }
 
