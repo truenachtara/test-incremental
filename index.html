@@ -86,7 +86,7 @@ function buy(buildingID) {
         document.getElementById("canPay").innerHTML = "You just bought another!";
         refreshBonuses();
         setTimeout(resetCanPay, 1000);
-    } else if (buildingID = null) {
+    } else if (buildingID == null) {
         refreshBonuses();
     } else {
         document.getElementById("canPay").innerHTML = "Too Expensive to buy another!";
