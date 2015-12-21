@@ -35,7 +35,7 @@ onmessage = function( evt ) {
 function doAction( )
 {
    actions[current_action]( );
-   postMessage(money: x, level: lev);   
+   postMessage({money: x, level: lev});   
    lev = -1
    setTimeout(doAction,1000);
 }
