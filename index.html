@@ -6,7 +6,7 @@
 
 <body>
 Your money: <output id="result"></output><br><br>
-<output id="totalBonus"></output><br><br> money per tick!
+<output id="totalBonus"></output> money per tick!<br><br>
 
 <button onclick="buy(0);">Buy Building A</button><br>
 Cost of next one: <output id="costA"></output><br>
@@ -92,6 +92,7 @@ function buy(buildingID) {
     } else if (buildingID == null) {
         refreshBonuses();
     } else {
+        buildingID = -1
         document.getElementById("canPay").innerHTML = "Too Expensive to buy another!";
     }
     refreshBonuses(buildingID);
