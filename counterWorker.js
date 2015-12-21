@@ -3,7 +3,7 @@ var actions = {
 'add': function( ) { x += dx; },
 'subtract': function( ) { x -= dx; }
 };
-var lev = null
+var lev = -1
 
 onmessage = function( evt ) {
    if ( evt.data && evt.data.action && evt.data.action in actions)
@@ -36,7 +36,7 @@ function doAction( )
 {
    actions[current_action]( );
    postMessage('money': x, 'level': lev);   
-   lev = null
+   lev = -1
    setTimeout(doAction,1000);
 }
 
