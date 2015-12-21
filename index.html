@@ -61,6 +61,7 @@ function beginGame() {
             if(level !== -1) {
                 building[level] = building[level] + 1
                 currentCost[level] = Math.ceil(nlogn(currentCost[level]));
+                refreshBonuses(null);
                 document.getElementById("canPay").innerHTML = "You just bought another!";
                 document.getElementById("costA").innerHTML = currentCost[0];
                 document.getElementById("costB").innerHTML = currentCost[1];
@@ -74,7 +75,7 @@ function beginGame() {
                 document.getElementById("bonusB").innerHTML = currentBonuses[1];
                 document.getElementById("bonusC").innerHTML = currentBonuses[2];
                 document.getElementById("bonusD").innerHTML = currentBonuses[3];
-                setTimeout(resetCanPay, 1000)
+                setTimeout(resetCanPay, 1000);
             }
             
         };
@@ -101,7 +102,7 @@ function buy(buildingID) {
     if (buyable == true) {
         count.postMessage({action:'subtract', amount:currentCost[buildingID], once:true, level:buildingID});
     } else if (buildingID == null) {
-        refreshBonuses();
+        refreshBonuses(null);
     } else {
         buildingID = -1
         document.getElementById("canPay").innerHTML = "Too Expensive to buy another!";
