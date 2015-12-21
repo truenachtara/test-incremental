@@ -6,7 +6,7 @@
 
 <body>
 Your money: <output id="result"></output><br><br>
-<output id="totalBonus"></output><br><br>
+<output id="totalBonus"></output><br><br> money per tick!
 
 <button onclick="buy(0);">Buy Building A</button><br>
 Cost of next one: <output id="costA"></output><br>
@@ -47,6 +47,7 @@ var money = 0;
 var baseBonuses = [1, 2, 5, 10];
 var currentBonuses = [0, 0, 0, 0];
 var totalBonus = 0;
+var level = -1;
 
 var buildingA = 0;
 
@@ -56,11 +57,12 @@ function beginGame() {
             count = new Worker("counterWorker.js");
         }
         count.onmessage = function(evt) {
+            level = evt.data.level
             money = evt.data.money;
             document.getElementById("result").innerHTML = money;
-            if(evt.data.level !== -1) {
-                building[evt.data.level] = building[evt.data.level] + 1
-                currentCost[evt.data.level] = Math.ceil(nlogn(currentCost[evt.data.level]));
+            if(level !== -1) {
+                building[level] = building[level] + 1
+                currentCost[level] = Math.ceil(nlogn(currentCost[level]));
                 document.getElementById("canPay").innerHTML = "You just bought another!";
             }
             
@@ -92,7 +94,7 @@ function buy(buildingID) {
     } else {
         document.getElementById("canPay").innerHTML = "Too Expensive to buy another!";
     }
-    refreshBonuses();
+    refreshBonuses(buildingID);
     document.getElementById("costA").innerHTML = currentCost[0];
     document.getElementById("costB").innerHTML = currentCost[1];
     document.getElementById("costC").innerHTML = currentCost[2];
@@ -112,14 +114,14 @@ function resetCanPay() {
     document.getElementById("canPay").innerHTML = " ";
 }
 
-function refreshBonuses() {
+function refreshBonuses(buildingID) {
     totalBonus = 0;
     for (i = 0; i < building.length; i++) {
         currentBonuses[i] = baseBonuses[i] * building[i];
         totalBonus = totalBonus + currentBonuses[i];
     }
     document.getElementById("totalBonus").innerHTML = totalBonus
-    count.postMessage({action:'add', amount:totalBonus + 1, once:false, level:-1});
+    count.postMessage({action:'add', amount:totalBonus + 1, once:false, level:buildingID});
 }
 
 document.getElementById("costA").innerHTML = currentCost[0];
