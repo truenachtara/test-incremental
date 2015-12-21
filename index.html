@@ -64,6 +64,7 @@ function beginGame() {
                 building[level] = building[level] + 1
                 currentCost[level] = Math.ceil(nlogn(currentCost[level]));
                 document.getElementById("canPay").innerHTML = "You just bought another!";
+                refreshValues();
             }
             
         };
@@ -96,18 +97,6 @@ function buy(buildingID) {
         document.getElementById("canPay").innerHTML = "Too Expensive to buy another!";
     }
     refreshBonuses(buildingID);
-    document.getElementById("costA").innerHTML = currentCost[0];
-    document.getElementById("costB").innerHTML = currentCost[1];
-    document.getElementById("costC").innerHTML = currentCost[2];
-    document.getElementById("costD").innerHTML = currentCost[3];
-    document.getElementById("amountA").innerHTML = building[0];
-    document.getElementById("amountB").innerHTML = building[1];
-    document.getElementById("amountC").innerHTML = building[2];
-    document.getElementById("amountD").innerHTML = building[3];
-    document.getElementById("bonusA").innerHTML = currentBonuses[0];
-    document.getElementById("bonusB").innerHTML = currentBonuses[1];
-    document.getElementById("bonusC").innerHTML = currentBonuses[2];
-    document.getElementById("bonusD").innerHTML = currentBonuses[3];
     setTimeout(resetCanPay, 1000);
 }
 
@@ -123,6 +112,21 @@ function refreshBonuses(buildingID) {
     }
     document.getElementById("totalBonus").innerHTML = totalBonus
     count.postMessage({action:'add', amount:totalBonus + 1, once:false, level:buildingID});
+}
+
+function refreshValues() {
+    document.getElementById("costA").innerHTML = currentCost[0];
+    document.getElementById("costB").innerHTML = currentCost[1];
+    document.getElementById("costC").innerHTML = currentCost[2];
+    document.getElementById("costD").innerHTML = currentCost[3];
+    document.getElementById("amountA").innerHTML = building[0];
+    document.getElementById("amountB").innerHTML = building[1];
+    document.getElementById("amountC").innerHTML = building[2];
+    document.getElementById("amountD").innerHTML = building[3];
+    document.getElementById("bonusA").innerHTML = currentBonuses[0];
+    document.getElementById("bonusB").innerHTML = currentBonuses[1];
+    document.getElementById("bonusC").innerHTML = currentBonuses[2];
+    document.getElementById("bonusD").innerHTML = currentBonuses[3];
 }
 
 document.getElementById("costA").innerHTML = currentCost[0];
