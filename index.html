@@ -85,7 +85,7 @@ function buy(buildingID) {
     cost = currentCost[buildingID];
     checkBuyable();
     if (buyable == true) {
-        count.postMessage({action:'subtract', amount:currentCost[buildingID], once:true});
+        count.postMessage({action:'subtract', amount:currentCost[buildingID], once:true, level:-1});
     } else if (buildingID == null) {
         refreshBonuses();
     } else {
@@ -118,7 +118,7 @@ function refreshBonuses() {
         totalBonus = totalBonus + currentBonuses[i];
     }
     document.getElementById("totalBonus").innerHTML = totalBonus
-    count.postMessage({action:'add', amount:totalBonus + 1, once:false, 'level':-1});
+    count.postMessage({action:'add', amount:totalBonus + 1, once:false, level:-1});
 }
 
 document.getElementById("costA").innerHTML = currentCost[0];
