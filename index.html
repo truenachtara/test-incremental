@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<head>
 <title>Test incremental</title>
 
 </head>
@@ -89,30 +87,13 @@ function buy(buildingID) {
     checkBuyable();
     if (buyable == true) {
         count.postMessage({action:'subtract', amount:currentCost[buildingID], once:true, level:buildingID});
+    } else if (buildingID == null) {
+        refreshBonuses();
     } else {
         buildingID = -1
         document.getElementById("canPay").innerHTML = "Too Expensive to buy another!";
     }
-    refreshBonuses();
-    refreshValues();
-    setTimeout(resetCanPay, 1000);
-}
-
-function resetCanPay() {
-    document.getElementById("canPay").innerHTML = " ";
-}
-
-function refreshBonuses() {
-    totalBonus = 0;
-    for (i = 0; i < building.length; i++) {
-        currentBonuses[i] = baseBonuses[i] * building[i];
-        totalBonus = totalBonus + currentBonuses[i];
-    }
-    document.getElementById("totalBonus").innerHTML = totalBonus
-    count.postMessage({action:'add', amount:totalBonus + 1, once:false, level:buildingID});
-}
-
-function refreshValues() {
+    refreshBonuses(buildingID);
     document.getElementById("costA").innerHTML = currentCost[0];
     document.getElementById("costB").innerHTML = currentCost[1];
     document.getElementById("costC").innerHTML = currentCost[2];
@@ -125,13 +106,28 @@ function refreshValues() {
     document.getElementById("bonusB").innerHTML = currentBonuses[1];
     document.getElementById("bonusC").innerHTML = currentBonuses[2];
     document.getElementById("bonusD").innerHTML = currentBonuses[3];
+    setTimeout(resetCanPay, 1000);
+}
+
+function resetCanPay() {
+    document.getElementById("canPay").innerHTML = " ";
+}
+
+function refreshBonuses(buildingID) {
+    totalBonus = 0;
+    for (i = 0; i < building.length; i++) {
+        currentBonuses[i] = baseBonuses[i] * building[i];
+        totalBonus = totalBonus + currentBonuses[i];
+    }
+    document.getElementById("totalBonus").innerHTML = totalBonus
+    count.postMessage({action:'add', amount:totalBonus + 1, once:false, level:buildingID});
 }
 
 document.getElementById("costA").innerHTML = currentCost[0];
 document.getElementById("amountA").innerHTML = building[0];
 
 beginGame();
-buy(-1);
+buy(null);
 
 </script>
 
