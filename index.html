@@ -86,7 +86,7 @@ function buy(buildingID) {
     cost = currentCost[buildingID];
     checkBuyable();
     if (buyable == true) {
-        count.postMessage({action:'subtract', amount:currentCost[buildingID], once:true, level:-1});
+        count.postMessage({action:'subtract', amount:currentCost[buildingID], once:true, level:buildingID});
     } else if (buildingID == null) {
         refreshBonuses();
     } else {
