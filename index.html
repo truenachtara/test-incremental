@@ -56,13 +56,14 @@ function beginGame() {
             count = new Worker("counterWorker.js");
         }
         count.onmessage = function(evt) {
-            document.getElementById("result").innerHTML = evt.data.money;
+            money = evt.data.money;
+            document.getElementById("result").innerHTML = money;
             if(evt.data.level != -1) {
                 building[evt.data.level] = building[evt.data.level] + 1
                 currentCost[evt.data.level] = Math.ceil(nlogn(currentCost[evt.data.level]));
                 document.getElementById("canPay").innerHTML = "You just bought another!";
             }
-            money = evt.data.money
+            
         };
     } else {
         document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Workers...";
