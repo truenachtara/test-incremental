@@ -89,13 +89,12 @@ function buy(buildingID) {
     checkBuyable();
     if (buyable == true) {
         count.postMessage({action:'subtract', amount:currentCost[buildingID], once:true, level:buildingID});
-    } else if (buildingID == null) {
-        refreshBonuses();
     } else {
         buildingID = -1
         document.getElementById("canPay").innerHTML = "Too Expensive to buy another!";
     }
     refreshBonuses();
+    refreshValues();
     setTimeout(resetCanPay, 1000);
 }
 
