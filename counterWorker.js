@@ -1,9 +1,8 @@
-var x = 0, dx = 1, current_action='add';
+var x = 0, dx = 1, current_action='add', lev = -1;
 var actions = {
 'add': function( ) { x += dx; },
 'subtract': function( ) { x -= dx; }
 };
-var lev = -1
 
 onmessage = function( evt ) {
    if ( evt.data && evt.data.action && evt.data.action in actions)
