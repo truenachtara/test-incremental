@@ -61,7 +61,6 @@ function beginGame() {
             if(level !== -1) {
                 building[level] = building[level] + 1
                 currentCost[level] = Math.ceil(nlogn(currentCost[level]));
-                refreshBonuses(null);
                 document.getElementById("canPay").innerHTML = "You just bought another!";
                 document.getElementById("costA").innerHTML = currentCost[0];
                 document.getElementById("costB").innerHTML = currentCost[1];
