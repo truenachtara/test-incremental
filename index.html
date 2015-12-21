@@ -62,6 +62,7 @@ function beginGame() {
                 building[level] = building[level] + 1
                 currentCost[level] = Math.ceil(nlogn(currentCost[level]));
                 document.getElementById("canPay").innerHTML = "You just bought another!";
+                buy(null)
             }
             
         };
@@ -118,6 +119,9 @@ function refreshBonuses(buildingID) {
     for (i = 0; i < building.length; i++) {
         currentBonuses[i] = baseBonuses[i] * building[i];
         totalBonus = totalBonus + currentBonuses[i];
+    }
+    if(buildingID == null) {
+        buldingID = -1
     }
     document.getElementById("totalBonus").innerHTML = totalBonus
     count.postMessage({action:'add', amount:totalBonus + 1, once:false, level:buildingID});
