@@ -122,7 +122,7 @@ function refreshBonuses(buildingID) {
         totalBonus = totalBonus + currentBonuses[i];
     }
     if(buildingID == null) {
-        buldingID = -1
+        buildingID = -1
     }
     document.getElementById("totalBonus").innerHTML = totalBonus
     count.postMessage({action:'add', amount:totalBonus + 1, once:false, level:buildingID});
