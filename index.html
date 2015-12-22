@@ -74,6 +74,7 @@ function beginGame() {
                 document.getElementById("bonusB").innerHTML = currentBonuses[1];
                 document.getElementById("bonusC").innerHTML = currentBonuses[2];
                 document.getElementById("bonusD").innerHTML = currentBonuses[3];
+                buy(null);
                 setTimeout(resetCanPay, 1000);
             }
             
@@ -118,7 +119,7 @@ function buy(buildingID) {
     document.getElementById("bonusA").innerHTML = currentBonuses[0];
     document.getElementById("bonusB").innerHTML = currentBonuses[1];
     document.getElementById("bonusC").innerHTML = currentBonuses[2];
-                document.getElementById("bonusD").innerHTML = currentBonuses[3];
+    document.getElementById("bonusD").innerHTML = currentBonuses[3];
     setTimeout(resetCanPay, 1000);
 }
 
