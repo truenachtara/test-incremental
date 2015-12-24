@@ -82,11 +82,6 @@ function beginGame() {
             if(level !== -1) {
                 building[level] = building[level] + 1
                 currentCost[level] = Math.ceil(nlogn(currentCost[level]));
-                alphabetArr.forEach(function(row, i){
-                    document.getElementById("cost" + row).innerHTML = currentCost[i]; 
-                    document.getElementById("amount" + row).innerHTML = building[i];
-                    document.getElementById("bonus" + row).innerHTML = currentBonuses[i]; 
-    })
                 buy(null);
                 setTimeout(resetCanPay, 1000);
             }
@@ -139,6 +134,12 @@ function refreshBonuses(buildingID) {
         currentBonuses[i] = baseBonuses[i] * building[i];
         totalBonus = totalBonus + currentBonuses[i];
     }
+    alphabetArr.forEach(function(row, i){
+        document.getElementById("cost" + row).innerHTML = currentCost[i]; 
+        document.getElementById("amount" + row).innerHTML = building[i];
+        document.getElementById("bonus" + row).innerHTML = currentBonuses[i]; 
+    })
+    })
     if(buildingID == null) {
         buildingID = -1
     }
