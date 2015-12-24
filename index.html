@@ -109,18 +109,11 @@ function buy(buildingID) {
     checkBuyable();
     if (buyable == true) {
         count.postMessage({action:'subtract', amount:currentCost[buildingID], once:true, level:buildingID});
-    } else if (buildingID == null) {
-        refreshBonuses(null);
     } else {
         buildingID = -1
         document.getElementById("canPay").innerHTML = "Too Expensive to buy another!";
     }
     refreshBonuses(buildingID);
-    alphabetArr.forEach(function(row, i){
-        document.getElementById("cost" + row).innerHTML = currentCost[i]; 
-        document.getElementById("amount" + row).innerHTML = building[i];
-        document.getElementById("bonus" + row).innerHTML = currentBonuses[i]; 
-    })
     setTimeout(resetCanPay, 1000);
 }
 
@@ -138,7 +131,6 @@ function refreshBonuses(buildingID) {
         document.getElementById("cost" + row).innerHTML = currentCost[i]; 
         document.getElementById("amount" + row).innerHTML = building[i];
         document.getElementById("bonus" + row).innerHTML = currentBonuses[i]; 
-    })
     })
     if(buildingID == null) {
         buildingID = -1
