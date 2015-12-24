@@ -30,7 +30,29 @@ You own <output id="amountD"></output> Building D's!<br>
 They make <output id="bonusD"></output> money per tick.<br>
 <output id="canPay"></output><br><br>
 
+<button onclick="buy(4);">Buy Building E</button><br>
+Cost of next one: <output id="costE"></output><br>
+You own <output id="amountE"></output> Building E's!<br>
+They make <output id="bonusE"></output> money per tick.<br>
+<output id="canPay"></output><br><br>
 
+<button onclick="buy(5);">Buy Building F</button><br>
+Cost of next one: <output id="costF"></output><br>
+You own <output id="amountF"></output> Building F's!<br>
+They make <output id="bonusF"></output> money per tick.<br>
+<output id="canPay"></output><br><br>
+
+<button onclick="buy(6);">Buy Building G</button><br>
+Cost of next one: <output id="costG"></output><br>
+You own <output id="amountG"></output> Building G's!<br>
+They make <output id="bonusG"></output> money per tick.<br>
+<output id="canPay"></output><br><br>
+
+<button onclick="buy(7);">Buy Building H</button><br>
+Cost of next one: <output id="costh"></output><br>
+You own <output id="amountH"></output> Building H's!<br>
+They make <output id="bonusH"></output> money per tick.<br>
+<output id="canPay"></output><br><br>
 
 <script language="JavaScript">
 
@@ -39,15 +61,13 @@ var buyable = true;
 var count;
 var buildingModifier = 0;
 var cost = 0;
-var currentCost = [15, 50, 300, 2500];
-var building = [0, 0, 0, 0];
+var currentCost = [15, 50, 300, 1000, 2500, 5000, 10000, 25000];
+var building = [0, 0, 0, 0, 0, 0, 0, 0];
 var money = 0;
-var baseBonuses = [1, 2, 5, 10];
-var currentBonuses = [0, 0, 0, 0];
+var baseBonuses = [1, 2, 5, 10, 50, 100, 250, 500];
+var currentBonuses = [0, 0, 0, 0, 0, 0, 0, 0];
 var totalBonus = 0;
 var level = -1;
-
-var buildingA = 0;
 
 function beginGame() {
     if(typeof(Worker) !== "undefined") {
