@@ -6,50 +6,50 @@
 Your money: <output id="result"></output><br><br>
 <output id="totalBonus"></output> money per tick!<br><br>
 
-<button onclick="buy(0);">Buy Building A</button><br>
+<button id=buttonA onclick="buy(0);">Buy Building A</button><br>
 Cost of next one: <output id="costA"></output><br>
 You own <output id="amountA"></output> Building A's!<br>
 They make <output id="bonusA"></output> money per tick.<br>
 <output id="canPay"></output><br><br>
 
-<button onclick="buy(1);">Buy Building B</button><br>
+<button id=buttonB onclick="buy(1);">Buy Building B</button><br>
 Cost of next one: <output id="costB"></output><br>
 You own <output id="amountB"></output> Building B's!<br>
 They make <output id="bonusB"></output> money per tick.<br>
 <output id="canPay"></output><br><br>
 
-<button onclick="buy(2);">Buy Building C</button><br>
+<button id=buttonC onclick="buy(2);">Buy Building C</button><br>
 Cost of next one: <output id="costC"></output><br>
 You own <output id="amountC"></output> Building C's!<br>
 They make <output id="bonusC"></output> money per tick.<br>
 <output id="canPay"></output><br><br>
 
-<button onclick="buy(3);">Buy Building D</button><br>
+<button id=buttonD onclick="buy(3);">Buy Building D</button><br>
 Cost of next one: <output id="costD"></output><br>
 You own <output id="amountD"></output> Building D's!<br>
 They make <output id="bonusD"></output> money per tick.<br>
 <output id="canPay"></output><br><br>
 
-<button onclick="buy(4);">Buy Building E</button><br>
+<button id=buttonE onclick="buy(4);">Buy Building E</button><br>
 Cost of next one: <output id="costE"></output><br>
 You own <output id="amountE"></output> Building E's!<br>
 They make <output id="bonusE"></output> money per tick.<br>
 <output id="canPay"></output><br><br>
 
-<button onclick="buy(5);">Buy Building F</button><br>
+<button id=buttonF onclick="buy(5);">Buy Building F</button><br>
 Cost of next one: <output id="costF"></output><br>
 You own <output id="amountF"></output> Building F's!<br>
 They make <output id="bonusF"></output> money per tick.<br>
 <output id="canPay"></output><br><br>
 
-<button onclick="buy(6);">Buy Building G</button><br>
+<button id=buttonG onclick="buy(6);">Buy Building G</button><br>
 Cost of next one: <output id="costG"></output><br>
 You own <output id="amountG"></output> Building G's!<br>
 They make <output id="bonusG"></output> money per tick.<br>
 <output id="canPay"></output><br><br>
 
-<button onclick="buy(7);">Buy Building H</button><br>
-Cost of next one: <output id="costh"></output><br>
+<button id=buttonH onclick="buy(7);">Buy Building H</button><br>
+Cost of next one: <output id="costH"></output><br>
 You own <output id="amountH"></output> Building H's!<br>
 They make <output id="bonusH"></output> money per tick.<br>
 <output id="canPay"></output><br><br>
@@ -57,10 +57,7 @@ They make <output id="bonusH"></output> money per tick.<br>
 <script language="JavaScript">
 
 var buyCost = 0;
-var buyable = true;
-var count;
 var buildingModifier = 0;
-var cost = 0;
 var currentCost = [15, 50, 300, 1000, 2500, 5000, 10000, 25000];
 var building = [0, 0, 0, 0, 0, 0, 0, 0];
 var money = 0;
@@ -68,83 +65,75 @@ var baseBonuses = [1, 2, 5, 10, 50, 100, 250, 500];
 var currentBonuses = [0, 0, 0, 0, 0, 0, 0, 0];
 var totalBonus = 0;
 var level = -1;
+var resetCanPayTimeout;
 var alphabetArr = ["A", "B","C","D","E","F","G","H"];
 
-function beginGame() {
-    if(typeof(Worker) !== "undefined") {
-        if(typeof(count) == "undefined") {
-            count = new Worker("counterWorker.js");
-        }
-        count.onmessage = function(evt) {
-            level = evt.data.level
-            money = evt.data.money;
-            document.getElementById("result").innerHTML = money;
-            if(level !== -1) {
-                building[level] = building[level] + 1
-                currentCost[level] = Math.ceil(nlogn(currentCost[level]));
-                buy(null);
-                setTimeout(resetCanPay, 1000);
-            }
-            
-        };
-    } else {
-        document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Workers...";
+function doAction( )
+{
+    money+=1;
+    for(var i = 0;i<building.length;i++)
+    {
+        money+=building[i]*baseBonuses[i];
     }
+    document.getElementById("result").innerHTML = money;
+   setTimeout(doAction,1000);
+}
+function beginGame() {
+doAction( );
+   
+    refreshBonuses();
 }
 
 function nlogn(n) {
     return n * Math.log10(n) * 0.9;
 }
 
-function checkBuyable() {
-    if(cost <= money) {
-        buyable = true;
-    } else {
-        buyable = false;
-    }
+function checkBuyable(cost) {
+    if(cost > money) {
+        return false;
+    } 
+    return true;
 }
 
 function buy(buildingID) {
-    cost = currentCost[buildingID];
-    checkBuyable();
-    if (buyable == true) {
-        count.postMessage({action:'subtract', amount:currentCost[buildingID], once:true, level:buildingID});
+    if (checkBuyable(currentCost[buildingID])) {
+        document.getElementById("result").innerHTML = money;
+        money-=currentCost[buildingID];
+        building[buildingID]+=1;
+        currentCost[buildingID] = Math.ceil(nlogn(currentCost[buildingID]));
+        
     } else {
-        buildingID = -1
         document.getElementById("canPay").innerHTML = "Too Expensive to buy another!";
+        window.clearTimeout(resetCanPayTimeout);
+        resetCanPayTimeout = setTimeout(resetCanPay,1000);
+        
     }
-    refreshBonuses(buildingID);
-    setTimeout(resetCanPay, 1000);
+    refreshBonuses();
 }
 
 function resetCanPay() {
     document.getElementById("canPay").innerHTML = " ";
 }
 
-function refreshBonuses(buildingID) {
-    totalBonus = 0;
+function refreshBonuses() {
+    document.getElementById("result").innerHTML = money;
+    totalBonus = 1;
     for (var i = 0; i < building.length; i++) {
         currentBonuses[i] = baseBonuses[i] * building[i];
         totalBonus = totalBonus + currentBonuses[i];
-    }setTimeout(function(){
-    alphabetArr.forEach(function(row, i){
-        document.getElementById("cost" + row).innerHTML = currentCost[i]; 
-        document.getElementById("amount" + row).innerHTML = building[i];
-        document.getElementById("bonus" + row).innerHTML = currentBonuses[i]; 
-    })
-}, 1);
-    if(buildingID == null) {
-        buildingID = -1
     }
-    document.getElementById("totalBonus").innerHTML = totalBonus
-    count.postMessage({action:'add', amount:totalBonus + 1, once:false, level:buildingID});
+    setTimeout(function(){
+        alphabetArr.forEach(function(row, i){
+            document.getElementById("cost" + row).innerHTML = currentCost[i]; 
+            document.getElementById("amount" + row).innerHTML = building[i];
+            document.getElementById("bonus" + row).innerHTML = currentBonuses[i]; 
+        })
+    }, 1);
+    document.getElementById("totalBonus").innerHTML = totalBonus;
 }
 
-document.getElementById("costA").innerHTML = currentCost[0];
-document.getElementById("amountA").innerHTML = building[0];
 
 beginGame();
-buy(null);
 
 </script>
 
