@@ -123,15 +123,16 @@ function resetCanPay() {
 
 function refreshBonuses(buildingID) {
     totalBonus = 0;
-    for (i = 0; i < building.length; i++) {
+    for (var i = 0; i < building.length; i++) {
         currentBonuses[i] = baseBonuses[i] * building[i];
         totalBonus = totalBonus + currentBonuses[i];
-    }
+    }setTimeout(function(){
     alphabetArr.forEach(function(row, i){
         document.getElementById("cost" + row).innerHTML = currentCost[i]; 
         document.getElementById("amount" + row).innerHTML = building[i];
         document.getElementById("bonus" + row).innerHTML = currentBonuses[i]; 
     })
+}, 1);
     if(buildingID == null) {
         buildingID = -1
     }
