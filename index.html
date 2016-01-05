@@ -67,6 +67,10 @@ var totalBonus = 0;
 var level = -1;
 var resetCanPayTimeout;
 var alphabetArr = ["A","B","C","D","E","F","G","H"];
+var upgradeBonus = 0;
+var upgradeMult = 1;
+var upgradeBonusList = [2, 5, 10, 0];
+var upgradeMultList = [1, 1, 1, 2];
 
 function doAction( )
 {
@@ -129,9 +133,13 @@ function refreshBonuses() {
             document.getElementById("bonus" + row).innerHTML = currentBonuses[i]; 
         })
     }, 1);
+    totalBonus = (totalBonus + upgradeBonus) * upgradeMult;
     document.getElementById("totalBonus").innerHTML = totalBonus;
 }
 
+function upgrade(upgradeID){
+    
+}
 
 beginGame();
 
