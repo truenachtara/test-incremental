@@ -64,7 +64,7 @@ They make <output id="bonusH"></output> RF/t.<br>
 var buyCost = 0;
 var buildingModifier = 0;
 var currentCost = [15, 50, 300, 1000, 2500, 5000, 10000, 25000];
-var building = [0, 0, 0, 0, 0, 0, 0, 0];
+var building = [1, 0, 0, 0, 0, 0, 0, 0];
 var money = 0;
 var baseBonuses = [1, 2, 5, 10, 50, 100, 250, 500];
 var currentBonuses = [0, 0, 0, 0, 0, 0, 0, 0];
@@ -82,7 +82,6 @@ var storage = 200
 
 function doAction( )
 {
-    money+=1;
     for(var i = 0;i<building.length;i++)
     {
         money+=building[i]*baseBonuses[i];
