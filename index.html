@@ -54,9 +54,9 @@ You own <output id="amountH"></output> Quantum Solars.<br>
 They make <output id="bonusH"></output> RF/t.<br>
 <output id="canPay"></output><br><br>
 
-<button onclick="upgrade(0);">Buy leadstone energy cell</button> Provides 100 more storage and 2 RF/t. 100RF<br>
-<button onclick="upgrade(1);">Buy BatBox</button> Provides 200 more storage and 5 RF/t. 200RF<br>
-<button onclick="upgrade(2);">Buy basic capacitor bank</button> Provides 500 more storage and 10 RF/t. 500RF<br>
+<button onclick="upgrade(0);">Buy leadstone energy cell</button> Provides 100 more storage. 100RF<br>
+<button onclick="upgrade(1);">Buy BatBox</button> Provides 200 more storage. 200RF<br>
+<button onclick="upgrade(2);">Buy basic capacitor bank</button> Provides 500 more storage. 500RF<br>
 <button onclick="upgrade(3);">Buy overclocker</button> 50% more RF/t! 1kRF<br>
 
 <script language="JavaScript">
@@ -75,7 +75,6 @@ var alphabetArr = ["A","B","C","D","E","F","G","H"];
 var upgradeBonus = 0;
 var upgradeMult = 1;
 var upgradeCost = [100, 200, 500, 1000];
-var upgradeBonusList = [2, 5, 10, 0];
 var upgradeMultList = [1, 1, 1, 1.5];
 var upgradeRFStorageList = [100, 500, 1000, 100]
 var storage = 200
@@ -144,16 +143,16 @@ function refreshBonuses() {
             document.getElementById("bonus" + row).innerHTML = currentBonuses[i]; 
         })
     }, 1);
-    totalBonus = (totalBonus + upgradeBonus) * upgradeMult;
+    totalBonus = totalBonus * upgradeMult;
     document.getElementById("totalBonus").innerHTML = totalBonus;
 }
 
 function upgrade(upgradeID){
     if(checkBuyable(upgradeCost[upgradeID])) {
         upgradeMult = upgradeMultList[upgradeID] * upgradeMult;
-        upgradeBonus += upgradeBonusList[upgradeID];
         storage += upgradeRFStorageList[upgradeID];
     }
+    refreshBonuses()
 }
 
 beginGame();
