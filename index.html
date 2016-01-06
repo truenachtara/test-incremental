@@ -3,7 +3,7 @@
 </head>
 
 <body>
-Your current energy: <output id="result"></output> RF<br><br>
+Your current energy: <output id="result"></output> RF out of <output id="rfstorage"></output> RF.<br>
 Making <output id="totalBonus"></output> RF/t.<br><br>
 
 <button id=buttonA onclick="buy(0);">Buy Survivalist Generator</button><br>
@@ -71,6 +71,7 @@ var upgradeBonus = 0;
 var upgradeMult = 1;
 var upgradeBonusList = [2, 5, 10, 0];
 var upgradeMultList = [1, 1, 1, 2];
+var storage = 200
 
 function doAction( )
 {
@@ -79,6 +80,10 @@ function doAction( )
     {
         money+=building[i]*baseBonuses[i];
     }
+    if(money > storage) {
+        money = storage
+    }
+    document.getElementById("rfstorage").innetHTML = storage;
     document.getElementById("result").innerHTML = money;
    setTimeout(doAction,1000);
 }
