@@ -54,6 +54,11 @@ You own <output id="amountH"></output> Quantum Solars.<br>
 They make <output id="bonusH"></output> RF/t.<br>
 <output id="canPay"></output><br><br>
 
+<button onclick="upgrade(0);">Buy leadstone energy cell</button> Provides 100 more storage and 2 RF/t.<br>
+<button onclick="upgrade(1);">Buy BatBox</button> Provides 200 more storage and 5 RF/t.<br>
+<button onclick="upgrade(2);">Buy basic capacitor bank</button> Provides 500 more storage and 10 RF/t.<br>
+<button onclick="upgrade(3);">Buy overclocker</button> 50% more RF/t!<br>
+
 <script language="JavaScript">
 
 var buyCost = 0;
@@ -69,8 +74,10 @@ var resetCanPayTimeout;
 var alphabetArr = ["A","B","C","D","E","F","G","H"];
 var upgradeBonus = 0;
 var upgradeMult = 1;
+var upgradeCost = [100, 200, 500, 1000];
 var upgradeBonusList = [2, 5, 10, 0];
-var upgradeMultList = [1, 1, 1, 2];
+var upgradeMultList = [1, 1, 1, 1.5];
+var upgradeRFStorageList = [100, 500, 1000, 100]
 var storage = 200
 
 function doAction( )
@@ -83,7 +90,7 @@ function doAction( )
     if(money > storage) {
         money = storage
     }
-    document.getElementById("rfstorage").innetHTML = storage;
+    document.getElementById("rfstorage").innerHTML = storage;
     document.getElementById("result").innerHTML = money;
    setTimeout(doAction,1000);
 }
@@ -143,7 +150,11 @@ function refreshBonuses() {
 }
 
 function upgrade(upgradeID){
-    
+    if(checkBuyable(upgradeCost[upgradeID])) {
+        upgradeMult = upgradeMultList[upgradeID] * upgradeMult;
+        upgradeBonus += upgradeBonusList[upgradeID];
+        storage += upgradeRFStorageList[upgradeID];
+    }
 }
 
 beginGame();
